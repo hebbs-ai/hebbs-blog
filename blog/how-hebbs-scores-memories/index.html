@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v5.18.1"><title>How HEBBS Scores Memories, And Why Repeated Patterns Matter More | HEBBS Blog</title><meta name="description" content="A deep dive into how HEBBS ranks, reinforces, and decays memories. Plus: why insights from larger clusters now score higher, and the cognitive science behind it."><link rel="canonical" href="https://blog.hebbs.ai/blog/how-hebbs-scores-memories/"><meta name="theme-color" content="#0A0A0B" media="(prefers-color-scheme: dark)"><meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)"><meta property="og:type" content="article"><meta property="og:url" content="https://blog.hebbs.ai/blog/how-hebbs-scores-memories/"><meta property="og:title" content="How HEBBS Scores Memories, And Why Repeated Patterns Matter More | HEBBS Blog"><meta property="og:description" content="A deep dive into how HEBBS ranks, reinforces, and decays memories. Plus: why insights from larger clusters now score higher, and the cognitive science behind it."><meta property="og:image" content="https://blog.hebbs.ai/images/how-hebbs-scores-memories.png"><meta property="og:site_name" content="HEBBS Blog"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:url" content="https://blog.hebbs.ai/blog/how-hebbs-scores-memories/"><meta name="twitter:title" content="How HEBBS Scores Memories, And Why Repeated Patterns Matter More | HEBBS Blog"><meta name="twitter:description" content="A deep dive into how HEBBS ranks, reinforces, and decays memories. Plus: why insights from larger clusters now score higher, and the cognitive science behind it."><meta name="twitter:image" content="https://blog.hebbs.ai/images/how-hebbs-scores-memories.png"><meta property="article:published_time" content="2026-03-14T00:00:00.000Z"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="alternate" type="application/rss+xml" title="HEBBS Blog" href="https://blog.hebbs.ai/rss.xml"><link rel="sitemap" href="/sitemap-index.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet"><!-- Prevent FOUC: apply theme before render --><script>
+(function () {
+  const stored = localStorage.getItem("theme");
+  if (stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    document.documentElement.classList.add("dark");
+  } else if (stored === "light") {
+    document.documentElement.classList.remove("dark");
+  } else {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.classList.add("dark");
+    }
+  }
+})();
+</script><link rel="stylesheet" href="/_astro/_slug_.JAEyc8Er.css"></head> <body class="min-h-screen flex flex-col"> <header class="border-b border-themed"> <nav class="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between"> <a href="https://hebbs.ai" class="flex items-center gap-2 text-themed hover:text-accent transition-colors"> <img src="/favicon.svg" alt="HEBBS" width="24" height="24"> <span class="font-logo text-lg font-bold">HEBBS</span> </a> <div class="flex items-center gap-4"> <a href="/" class="text-sm text-themed-muted hover:text-accent transition-colors">Posts</a> <a href="/rss.xml" class="text-sm text-themed-muted hover:text-accent transition-colors">RSS</a> <a href="https://hebbs.ai" class="text-sm text-themed-muted hover:text-accent transition-colors" target="_blank" rel="noopener">hebbs.ai</a> <button id="theme-toggle" type="button" aria-label="Toggle theme" class="p-2 rounded-lg border border-themed text-themed-muted hover:text-accent transition-colors cursor-pointer"> <!-- Sun icon (shown in dark mode) --> <svg id="icon-sun" class="hidden w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path> </svg> <!-- Moon icon (shown in light mode) --> <svg id="icon-moon" class="hidden w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path> </svg> <!-- Auto icon (system) --> <svg id="icon-auto" class="hidden w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path> </svg> </button> <script type="module">function l(){const t=document.getElementById("theme-toggle"),i=document.getElementById("icon-sun"),s=document.getElementById("icon-moon"),d=document.getElementById("icon-auto");if(!t||!i||!s||!d)return;const n=["light","dark","auto"];function o(){const e=localStorage.getItem("theme");return e==="light"||e==="dark"?e:"auto"}function c(e){const a=e==="dark"||e==="auto"&&window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",a),i.classList.toggle("hidden",e!=="dark"),s.classList.toggle("hidden",e!=="light"),d.classList.toggle("hidden",e!=="auto"),t.setAttribute("aria-label",`Theme: ${e}. Click to change.`)}function r(e){e==="auto"?localStorage.removeItem("theme"):localStorage.setItem("theme",e),c(e)}c(o()),t.addEventListener("click",()=>{const e=o(),a=n[(n.indexOf(e)+1)%n.length];r(a)}),window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{o()==="auto"&&c("auto")})}l();document.addEventListener("astro:after-swap",l);</script> </div> </nav> </header> <main class="flex-1">  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How HEBBS Scores Memories, And Why Repeated Patterns Matter More","description":"A deep dive into how HEBBS ranks, reinforces, and decays memories. Plus: why insights from larger clusters now score higher, and the cognitive science behind it.","datePublished":"2026-03-14T00:00:00.000Z","image":"https://blog.hebbs.ai/images/how-hebbs-scores-memories.png","author":{"@type":"Organization","name":"HEBBS","url":"https://hebbs.ai"},"publisher":{"@type":"Organization","name":"HEBBS","url":"https://hebbs.ai","logo":{"@type":"ImageObject","url":"https://blog.hebbs.ai/logo-icon.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.hebbs.ai/blog/how-hebbs-scores-memories/"}}</script> <article class="max-w-3xl mx-auto px-4 py-12"> <header class="mb-8"> <div class="text-sm text-themed-muted mb-3"> <time datetime="2026-03-14T00:00:00.000Z"> March 14, 2026 </time>  </div> <h1 class="text-3xl sm:text-4xl font-bold text-themed leading-tight mb-4">How HEBBS Scores Memories, And Why Repeated Patterns Matter More</h1> <p class="text-lg text-themed-muted">A deep dive into how HEBBS ranks, reinforces, and decays memories. Plus: why insights from larger clusters now score higher, and the cognitive science behind it.</p> <div class="flex flex-wrap gap-2 mt-4"> <a href="/tags/engineering/" class="text-xs px-2 py-1 rounded-md bg-accent/10 text-accent font-medium hover:bg-accent/20 transition-colors"> engineering </a><a href="/tags/deep-dive/" class="text-xs px-2 py-1 rounded-md bg-accent/10 text-accent font-medium hover:bg-accent/20 transition-colors"> deep-dive </a><a href="/tags/scoring/" class="text-xs px-2 py-1 rounded-md bg-accent/10 text-accent font-medium hover:bg-accent/20 transition-colors"> scoring </a> </div> </header> <img src="/images/how-hebbs-scores-memories.png" alt="How HEBBS Scores Memories, And Why Repeated Patterns Matter More" class="w-full rounded-lg mb-8 object-cover aspect-video"> <div class="prose text-themed">  <p>Every memory system faces the same question: when an agent asks “what do I know about this?”, which memories should surface first?</p>
+<p>Vector databases answer with distance: the nearest embedding wins. That’s a start, but it ignores everything else. How important was this memory? How recently was it accessed? Has the agent relied on it before? And for insights derived from many observations, shouldn’t the breadth of evidence matter?</p>
+<p>HEBBS answers all of these. This post explains the complete scoring system, from the moment a memory is created, through recall ranking, reinforcement, decay, and the new frequency-aware insight scoring.</p>
+<h2 id="the-four-signals">The Four Signals</h2>
+<p>When you call <code>recall()</code>, HEBBS doesn’t just return the closest vectors. Every candidate memory is scored by four signals, weighted and combined into a single composite score:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>composite_score = 0.5 x relevance</span></span>
+<span class="line"><span>               + 0.2 x recency</span></span>
+<span class="line"><span>               + 0.2 x importance</span></span>
+<span class="line"><span>               + 0.1 x reinforcement</span></span></code></pre>
+<h3 id="1-relevance-50">1. Relevance (50%)</h3>
+<p>This is the strategy-specific signal, the “how well does this memory match the query?” score. It varies by recall strategy:</p>
+<ul>
+<li><strong>Similarity</strong>: <code>1.0 - L2_distance</code> between query and memory embeddings</li>
+<li><strong>Temporal</strong>: Rank-based, where most recent memories get highest relevance</li>
+<li><strong>Causal</strong>: <code>1.0 - (depth / max_depth)</code>, so closer causal connections score higher</li>
+<li><strong>Analogical</strong>: Blend of embedding similarity and structural relationship similarity</li>
+</ul>
+<p>Relevance dominates at 50% weight because the retrieval strategy should be the primary signal. If you ask for similar memories, distance should matter most.</p>
+<h3 id="2-recency-20">2. Recency (20%)</h3>
+<p>A linear decay from 1.0 to 0.0 over a configurable window (default: 30 days):</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>recency = max(0, 1.0 - age / max_age)</span></span></code></pre>
+<p>A memory created 1 hour ago scores ~1.0. A memory from 15 days ago scores ~0.5. After 30 days, recency contributes nothing, but the memory can still rank high through other signals.</p>
+<p>This is intentionally simple. Complex recency curves add tuning burden without clear benefit. Linear decay is predictable and easy to reason about.</p>
+<h3 id="3-importance-20">3. Importance (20%)</h3>
+<p>Every memory has an importance score in [0.0, 1.0], set at creation time. For episode memories (raw observations), this comes from the caller. The agent or application decides what matters:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#E1E4E8">engine.remember(</span><span style="color:#9ECBFF">"Customer mentioned they're evaluating competitors"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">importance</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0.9</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">engine.remember(</span><span style="color:#9ECBFF">"Weather was nice during the call"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">importance</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0.2</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<p>Default importance is 0.5 if not specified. This value is immutable: once set, it doesn’t change. But as we’ll see, the <em>effective</em> importance changes over time through decay and reinforcement.</p>
+<p>For insights (memories generated by the reflect pipeline), importance is computed differently. More on that below.</p>
+<h3 id="4-reinforcement-10">4. Reinforcement (10%)</h3>
+<p>Every time a memory is returned in a recall result, its access count increments. The reinforcement signal is logarithmic:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>reinforcement = log2(1 + access_count) / log2(1 + cap)</span></span></code></pre>
+<p>With the default cap of 100, this gives:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Accesses</th><th>Reinforcement</th></tr></thead><tbody><tr><td>0</td><td>0.00</td></tr><tr><td>1</td><td>0.15</td></tr><tr><td>5</td><td>0.39</td></tr><tr><td>20</td><td>0.63</td></tr><tr><td>100</td><td>1.00</td></tr></tbody></table>
+<p>Logarithmic scaling means the first few accesses matter most. Going from 0 to 5 accesses is a bigger signal than going from 50 to 100. This matches how human memory works: the first few recalls of a fact consolidate it strongly, while additional repetitions have diminishing effect.</p>
+<p>The 10% weight keeps reinforcement as a tiebreaker rather than a dominant signal. We don’t want a frequently-accessed but irrelevant memory to outrank a highly relevant one.</p>
+<h2 id="the-lifecycle-from-creation-to-decay">The Lifecycle: From Creation to Decay</h2>
+<h3 id="birth-remember">Birth: <code>remember()</code></h3>
+<p>When a memory is created:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>importance = caller-provided or 0.5</span></span>
+<span class="line"><span>decay_score = importance (starts equal)</span></span>
+<span class="line"><span>access_count = 0</span></span>
+<span class="line"><span>last_accessed_at = now</span></span></code></pre>
+<p>The memory enters the system at full strength. Its decay score equals its importance because no time has passed, so no decay has occurred.</p>
+<h3 id="active-life-recall--reinforcement">Active Life: <code>recall()</code> + Reinforcement</h3>
+<p>Each time a memory appears in recall results, two things happen:</p>
+<ol>
+<li><code>access_count += 1</code>, strengthening the future reinforcement signal</li>
+<li><code>last_accessed_at = now</code>, which <strong>resets the decay clock</strong></li>
+</ol>
+<p>That second point is critical. The decay formula uses <code>last_accessed_at</code>, not <code>created_at</code>, for its age calculation. A memory created 6 months ago but recalled yesterday is treated as 1 day old for decay purposes. Useful memories stay alive.</p>
+<h3 id="background-decay-sweeps">Background: Decay Sweeps</h3>
+<p>A background worker periodically recalculates every memory’s decay score:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>decay_score = importance x 2^(-age / half_life) x reinforcement_multiplier</span></span></code></pre>
+<p>Where:</p>
+<ul>
+<li><code>age = now - last_accessed_at</code> (not created_at)</li>
+<li><code>half_life = 30 days</code> (default)</li>
+<li><code>reinforcement_multiplier = 1 + log2(1 + access_count) / log2(1 + cap)</code>, range [1.0, ~2.0]</li>
+</ul>
+<p>This creates a natural lifecycle:</p>
+<ul>
+<li><strong>New memories</strong> start with decay_score equal to importance</li>
+<li><strong>Accessed memories</strong> get their clock reset and reinforcement boosted, so they stay strong</li>
+<li><strong>Neglected memories</strong> exponentially decay toward zero</li>
+<li><strong>Memories below threshold (0.01)</strong> become auto-forget candidates</li>
+</ul>
+<p>The half-life of 30 days means an unaccessed memory with importance 0.5 decays to 0.25 after a month, 0.125 after two months, and hits the auto-forget threshold around 6 months. But a single recall resets that clock entirely.</p>
+<h2 id="how-insights-are-scored-differently">How Insights Are Scored Differently</h2>
+<p>Episode memories get their importance from the caller. But insights, memories generated by the reflect pipeline when it finds patterns across episodes, need a different approach. The caller didn’t create them. The system did.</p>
+<h3 id="the-reflect-pipeline">The Reflect Pipeline</h3>
+<p>HEBBS periodically runs a four-stage reflect pipeline:</p>
+<ol>
+<li><strong>Cluster</strong>: Group episode memories by embedding similarity</li>
+<li><strong>Propose</strong>: LLM generates candidate insights per cluster (“these 15 customer calls all mention pricing confusion”)</li>
+<li><strong>Validate</strong>: LLM validates candidates against source memories and existing insights</li>
+<li><strong>Consolidate</strong>: Accepted insights are scored and stored</li>
+</ol>
+<h3 id="insight-importance-three-signals">Insight Importance: Three Signals</h3>
+<p>An insight’s importance is computed from three signals:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>importance = (0.7 x mean_source_importance + 0.3 x llm_confidence) + frequency_boost</span></span></code></pre>
+<p><strong>Mean source importance (70% of base)</strong>: The average importance of all episode memories that produced this insight. If the source memories were important, the insight should be too.</p>
+<p><strong>LLM confidence (30% of base)</strong>: How confident the LLM is that this insight is valid, non-obvious, and useful. This is the qualitative judgment: “is this actually a meaningful pattern, or just noise?”</p>
+<p><strong>Frequency boost</strong>: <code>ln(1 + source_count) / 10</code>, a logarithmic boost based on how many source memories converged on this insight.</p>
+<h3 id="why-frequency-matters">Why Frequency Matters</h3>
+<p>This is the newest addition to the scoring system, and it addresses a real gap.</p>
+<p>Consider two insights generated by the reflect pipeline:</p>
+<ul>
+<li><strong>Insight A</strong>: “Customers in the enterprise segment consistently ask about SSO integration”, derived from 30 call transcripts</li>
+<li><strong>Insight B</strong>: “One customer mentioned preferring dark mode”, derived from 2 call transcripts</li>
+</ul>
+<p>If both clusters happen to have similar average importance (say, 0.6) and the LLM gives both similar confidence (say, 0.8), the old formula would score them identically:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Old: 0.7 x 0.6 + 0.3 x 0.8 = 0.66 for both</span></span></code></pre>
+<p>But Insight A is clearly more significant. It represents a pattern observed across 30 independent data points. Insight B is an anecdote from 2.</p>
+<p>With frequency boost:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Insight A (30 sources): 0.66 + ln(31)/10 = 0.66 + 0.34 = 1.00</span></span>
+<span class="line"><span>Insight B (2 sources):  0.66 + ln(3)/10  = 0.66 + 0.11 = 0.77</span></span></code></pre>
+<p>The logarithmic curve is important here. We want diminishing returns:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Source Count</th><th>Frequency Boost</th></tr></thead><tbody><tr><td>1</td><td>+0.07</td></tr><tr><td>3</td><td>+0.14</td></tr><tr><td>10</td><td>+0.24</td></tr><tr><td>20</td><td>+0.31</td></tr><tr><td>50</td><td>+0.39</td></tr><tr><td>100</td><td>+0.46</td></tr></tbody></table>
+<p>Going from 3 to 10 sources adds +0.10. Going from 50 to 100 adds only +0.07. This prevents a single large cluster from completely dominating. 100 weak signals shouldn’t automatically outrank 10 strong ones.</p>
+<p>The result is clamped to [0.0, 1.0], so the boost can elevate an insight’s importance but never beyond the maximum.</p>
+<h3 id="the-cognitive-science-parallel">The Cognitive Science Parallel</h3>
+<p>This isn’t arbitrary engineering. It mirrors how human memory consolidation works.</p>
+<p>In cognitive psychology, the <strong>frequency of co-occurrence</strong> is a primary driver of belief strength. If you hear the same claim from 20 independent sources, you hold it with more conviction than if you heard it once, even if each individual source is equally credible. This is the basis of the <em>availability heuristic</em> and <em>illusory truth effect</em>, but in a controlled, measurable form.</p>
+<p>HEBBS makes this explicit and tunable. The logarithmic curve prevents the runaway effects that plague human cognition (where mere repetition creates false confidence). Instead, frequency is a bounded signal that contributes alongside source quality and LLM judgment.</p>
+<h2 id="putting-it-all-together">Putting It All Together</h2>
+<p>Here’s the complete scoring flow for a memory’s lifetime:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>CREATION (remember)</span></span>
+<span class="line"><span>  Episode: importance = caller-provided (default 0.5)</span></span>
+<span class="line"><span>  Insight: importance = 0.7 x mean_sources + 0.3 x llm_confidence + ln(1+count)/10</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>RECALL (query time)</span></span>
+<span class="line"><span>  composite = 0.5 x relevance + 0.2 x recency + 0.2 x importance + 0.1 x reinforcement</span></span>
+<span class="line"><span>  → Results sorted by composite score, top-k returned</span></span>
+<span class="line"><span>  → Each returned memory: access_count++, last_accessed_at = now</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>DECAY (background sweeps, every hour)</span></span>
+<span class="line"><span>  decay_score = importance x 2^(-age/half_life) x (1 + log2(1+accesses)/log2(101))</span></span>
+<span class="line"><span>  → If decay_score &#x3C; 0.01 → candidate for auto-forget</span></span></code></pre>
+<p>Three scoring systems, three different purposes:</p>
+<ul>
+<li><strong>Importance</strong> is the memory’s intrinsic value, set once, never changes</li>
+<li><strong>Composite score</strong> is the query-time ranking, changing with every query based on relevance, recency, and reinforcement</li>
+<li><strong>Decay score</strong> is the long-term survival signal, changing over time based on age and usage</li>
+</ul>
+<p>Together, they create a memory system where relevant memories surface first, useful memories stay alive, neglected memories fade, and insights backed by broad evidence rank above anecdotes.</p>
+<p>That’s how memory should work.</p>  </div> </article>  </main> <footer class="border-t border-themed mt-16"> <div class="max-w-3xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-themed-muted"> <p>&copy; 2026 HEBBS. All rights reserved.</p> <div class="flex items-center gap-4"> <a href="https://hebbs.ai" class="hover:text-accent transition-colors" target="_blank" rel="noopener">Website</a> <a href="https://docs.hebbs.ai" class="hover:text-accent transition-colors" target="_blank" rel="noopener">Docs</a> <a href="https://github.com/hebbs-ai" class="hover:text-accent transition-colors" target="_blank" rel="noopener">GitHub</a> </div> </div> </footer> </body></html>
